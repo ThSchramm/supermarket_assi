@@ -21,6 +21,7 @@ class TableObject:
         try:
             if not self.first_read:
                 self.dataframe = pandas.read_excel(path)
+                self.dataframe.rename(columns=self.dataframe.iloc[0])
         except:
             return False
 

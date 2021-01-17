@@ -29,18 +29,40 @@ if __name__ == "__main__":
         print('Fehler beim Lesen der Tabelle: ' + groups.get_filename())
 
     # Test
+    products_df = products_df.drop(columns=['Unit'])
     print(products_df)
-    print(groups_df)
+    # print(groups_df)
 
-    # Create the maingui, this is the first parent widget
-    #
-    # maingui = tkinter.Tk()
-    # maingui.title("Einkaufsliste")
+    # Create the maingui(root window), this is the first parent widget
+
+    maingui = tkinter.Tk()
+    maingui.title("Einkaufsliste")
+
+    # Print product list at maingui as gui_table
+
+    # create listbox object
+    gui_products = tkinter.Listbox(maingui,
+                                   height=10,
+                                   width=15,
+                                   bg="grey",
+                                   activestyle='dotbox',
+                                   font="Helvetica",
+                                   fg="yellow")
+
+    # Define the size of the window.
+    maingui.geometry("300x250")
+
+    # Define a label for the list.
+    label = tkinter.Label(maingui, text="Produkte")
+
+    # insert elements by their index and names.
+    for i in range(len(products_df['Product'].tolist())):
+        gui_products.insert(i, str(products_df['Product'].tolist()[i]))
 
     # Label as child- of parent-widget maingui
-    # w = tkinter.Label(maingui, text="Einkaufsliste")
+    # pack the widgets
+    label.pack()
+    gui_products.pack()
 
-    # The label widget will be embetted to maingui with pack-function
-    # w.pack()
 
-    # maingui.mainloop()
+    maingui.mainloop()
