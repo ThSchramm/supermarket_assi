@@ -15,7 +15,7 @@ class TableObject:
 
     def read_resource(self):
         """
-        Loads the source excel-table to the pandas dateaframe of the object
+        Loads the source excel-table to the pandas dataframe of the object
         """
         path = './data/' + self.file_name + '.xlsx'
         try:
